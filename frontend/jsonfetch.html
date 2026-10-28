@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>json/fetch</title>
+</head>
+<body>
+    <h1>json/fetch</h1>
+    
+    <button onclick="llamar()">fetch</button>
+    <button onclick="llamar2()">xmlhttprequest</button>
+    <button onclick="llamar3()">fetch async</button>
+    <button onclick="llamar4()">fetch blob</button>
+    <button onclick="llamar5()"></button>
+    <img src="" alt="" id="img1">  
+
+
+    <script>
+        elemento_imagen = document.getElementById("img1")
+
+        //Fetch llama con get
+        function llamar() {
+            url="https://jsonplaceholder.typicode.com/users/1"
+            parametros= ""
+            fetch (url)
+            .then(respuesta=>{
+                usuario = respuesta.json()
+                console.log(usuario)
+                return usuario
+            })
+
+            .then(datos=>{
+                console.log(datos)
+                u = datos
+                console.log(u.name)
+            })
+
+            .catch(error=>{
+                console.log(error)
+            })
+        }
+
+        function llamar2(){
+            //xmlhttprequest llama con get
+            url = "https://jsonplaceholder.typicode.com/users/1"
+            xhttp = new XMLHttpRequest()
+            xhttp.onload = function(){
+                usuario = (xhttp.response)
+                u = JSON.parse(usuario) //JSON.parse es necesario para poder acceder a los elementos uno por uno como con fetch
+                console.log(u.name) 
+            }
+            xhttp.open("GET",url)
+            xhttp.send()
+        }
+
+        function llamar3() {
+            url="https://jsonplaceholder.typicode.com/users/1"
+            parametros= ""
+            fetch (url)
+            .then(async respuesta=>{
+                console.log("respuesta:")
+                console.log(respuesta)
+                usuario = await respuesta.json()
+                console.log(usuario)
+                return usuario
+            })
+
+            .then(datos=>{
+                console.log(datos)
+                u = datos
+                console.log(u.name)
+            })
+
+            .catch(error=>{
+                console.log(error)
+            })
+        }
+
+        function llamar4(){
+            url = "https://picsum.photos/id/1/200/200"
+            fetch(url)
+            .then(
+                respuesta => {
+                    console.log(respuesta)
+                    r = respuesta.blob()
+                    return r
+                }
+            )
+
+            .then(datos=>{
+                console.log(datos)
+                imagen = URL.createObjectURL(datos)
+                elemento_imagen.src = imagen
+                console.log(imagen)
+            })
+
+            .catch(
+                error=>{
+                    console.log(error)
+                }
+            )
+        }
+
+        function llamar5(){
+            url = ""
+            .fetch()
+            .fetch()
+            .then()
+        }
+    </script>
+</body>
+</html>

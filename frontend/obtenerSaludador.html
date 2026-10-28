@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>obtenerSaludador</title>
+</head>
+<body>
+    <h1>Obtener Saludador</h1>
+    <button onclick="obtener()">Obtener</button>
+
+    <script>
+        //
+        function obtener(){
+            url = "http://localhost:8081/obtenerSaludador"
+            fetch(url)
+            .then(async respuesta=>{
+                r = await respuesta.json()
+                console.log(r)
+                return r
+            })
+
+            .catch(error =>{
+                console.log(error)
+            })
+        }
+    </script>
+
+
+</body>
+</html>

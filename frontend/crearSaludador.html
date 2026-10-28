@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Saludador</title>
+</head>
+<body>
+    <h1>Crear saludador</h1>
+    <!-- Este metodo no sirve porque hay que mandar un JSON y los formularios no mandan JSON 
+    <form action="http://localhost:8081/crearSaludador" method="post">
+        <input type="submit">
+    </form>
+    -->
+    <label for="">Nombre</label>
+    <input type="text" id="nombre">
+    <button onclick="crear()">Crear</button>
+    
+    <script>
+    url = "http://localhost:8081/crearSaludador"
+        
+    function crear(){
+        //No enviar objetos al backend, enviar el JSON como cadena
+        nombre = document.getElementById("nombre").value
+        let cuerpo = JSON.stringify(`{contenido: ${nombre}`)
+        console.log(cuerpo)
+
+        fetch(url, {
+            method : 'POST',
+            headers : {
+            'Content-Type':'application/json'
+            },
+            body : cuerpo
+        })
+
+        .then(async respuesta =>{
+            console.log(await respuesta)888888
+        })
+
+        .catch()
+        }
+    </script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package mx.uv.fei.demo; 
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+@CrossOrigin (origins = "*")
 @RestController
 public class saludarControlador {
     String nombre;
@@ -66,6 +67,8 @@ public class saludarControlador {
                     <li><a href = '/saludador-alternativo/default2'>/saludador-alternativo/{nombreX}</a></li>
                     <li><a href = '/crearSaludador'>/crearSaludador</a></li>
                     <li><a href = '/obtenerSaludador'>/obtenerSaludador</a></li>
+                    <li><a href = '/getQuery'>/getQuery?nombre=xxx&paterno=yyy</a></li>
+                    <li><a href = '/getQuery2'>/getQuery2?nombre=xxx&[paterno=yyy]</a></li>
                 </ul>  
                 """;
     }
